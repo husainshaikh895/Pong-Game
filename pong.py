@@ -60,7 +60,7 @@ spen.hideturtle()
 spen.goto(0, 0)
 spen.write(f'''Welcome to PONG.\n
 	This is two player game.\n {player_1} should use keys [w, s]\n and {player_2} should use keys [Up, Down] \nto move their paddles up and Down respectively.\n
-	Your goal is to defend the ball from going behind you.
+	Your goal is to defend the ball from going behind you.\n Whoever scores 10 points first wins.\n\t\n
 	Press \'p or m\' to enable or disable background music''', align='center', font=('ComicSans', 20, 'italic'))
 time.sleep(7)
 spen.clear()
@@ -139,6 +139,7 @@ play_bg()
 window.onkeypress(stop_music, 'm')
 window.onkeypress(play_bg, 'p')
 
+
 # main loop
 try:
 	while(True):
@@ -199,6 +200,27 @@ try:
 			ball.dx *= -1
 			ball.color('green')
 			play_hit()
+
+		# win-lose logic
+		if(score_1 == 5 or score_2 == 5):
+			pen.clear()
+			spen.clear()
+			spen.write('Congratulations', align='center', font=('SansSerif', 28, 'bold'))
+			time.sleep(1)
+			spen.clear()
+			if(score_1 == 5):
+				spen.write(f'\n{player_1} Won this match.\n\n{player_2} is a sore loser.', align='center', font=('ComicSans', 30, 'bold'))	
+			elif(score_2 == 5):
+				spen.write(f'{player_2} Won this match.\n\n{player_1} is a sore loser.', align='center', font=('ComicSans', 30, 'bold'))
+			
+			time.sleep(3)
+			spen.clear()
+			score_1 = 0
+			score_2 = 0
+			stop_music()
+			play_bg()
+
+
 except:
 	# on closing the window music should stop
 	stop_music()
