@@ -101,11 +101,11 @@ def paddle_b_down():
 
 def play_bg():
 	if platform.system() == 'Darwin':
-		os.system('afplay background.mp3&')
+		os.system('afplay antenna_bgm.mp3&')
 	elif platform.system() == 'Windows':
 		pass
 	elif platform.system() == 'Linux':
-		os.system('aplay background.mp3&')
+		os.system('aplay antenna_bgm.mp3&')
 	else:
 		pass
 
